@@ -1,24 +1,11 @@
-#include <config.h>
+#include "config.h"
+#include "secrets.h"
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 
-void callback(char* topic, byte* payload, unsigned int length) {
-}
-
-void setup() {
-  Serial.begin(115200);
-  Serial.setDebugOutput(true);
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-
-  Serial.print("Connecting");
-  while (WiFi.status() != WL_CONNECTED)
-  {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println(WiFi.localIP());
+void mqtt_connect(IPAddress mqtt_server_address, int mqtt_server_port, String mqtt_client_name, String mqtt_username, String mqtt_password){
   client.setServer(IPAddress(192, 168, 0, 3), MQTT_PORT);
   client.setCallback(callback);
 
@@ -38,6 +25,23 @@ void setup() {
  
     }
   }
+}
+
+void callback(char* topic, byte* payload, unsigned int length) {
+}
+
+void setup() {
+  Serial.begin(115200);
+  Serial.setDebugOutput(true);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+
+  Serial.print("Connecting");
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println(WiFi.localIP());
 
 }
 

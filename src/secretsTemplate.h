@@ -1,3 +1,5 @@
+//change name of the file to "secrets.h"
+
 #define MQTT_SERVER "MQTT Server Address"   //MQTT Server Address
 #define MQTT_PORT 1883                      //MQTT Server Port
 #define MQTT_USERNAME "MQTT_USERNAME"       //MQTT Server Username
